@@ -37,7 +37,7 @@ while True:
     # elif opcao == "3":
     #     print("\n--- LOGIN ---")
     #     login = input("Login: ").strip()
-    #     senha = input("Senha: ").strip()
+#     senha = input("Senha: ").strip()
     #
     #     encontrado = None
     #     for u in usuarios:
