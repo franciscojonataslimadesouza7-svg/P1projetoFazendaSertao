@@ -1,36 +1,40 @@
 usuarios = [
-    ["jonatas", "123", "ADM"],
-    ["maria", "abc", "CLIENTE"]
+    ["jonatas", "1234", "ADM"],
+    ["jose", "12", "CLIENTE"]
 ]
 
-animais = []
-
 while True:
-    print("\n-------- MENU --------")
-    print("1 - Cadastrar usuário")
-    print("2 - Listar usuários")
-    print("3 - Login")
+    print("\n--- MENU ---")
+    print("1 - Cadastrar")
+    print("2 - Login")
     print("0 - Sair")
 
     opcao = input("Escolha: ")
 
-    # CADASTRAR USUÁRIO
+    # CADASTRO
     if opcao == "1":
         login = input("Login: ")
-        senha = input("Senha: ")
-        perfil = input("Perfil (ADM/CLIENTE): ")
+
+        while True:
+            senha = input("Senha: ")
+
+            contador = 0
+            for letra in senha:
+                if letra >= "0" and letra <= "9":
+                    contador = contador + 1
+
+            if len(senha) >= 8 and contador >= 2:
+                break
+            else:
+                print("Senha inválida!")
+
+        perfil = input("Perfil (ADM ou CLIENTE): ").upper()
 
         usuarios.append([login, senha, perfil])
         print("Usuário cadastrado!")
 
-    # LISTAR USUÁRIOS
-    elif opcao == "2":
-        for u in usuarios:
-            print(u[0], "-", u[2])
-
     # LOGIN
-    elif opcao == "3":
-        print("\n--- LOGIN ---")
+    elif opcao == "2":
         login = input("Login: ")
         senha = input("Senha: ")
 
@@ -45,54 +49,128 @@ while True:
 
             perfil = usuario[2]
 
+            compra_produtos = []
+            quantidade_produtos = []
+            data_retiradas = []
+            hora_retiradas = []
 
-   R6
+            while True:
+                compra_produtos = input("QUAL PRODUTO VOCE QUER COMPRAR?: ").upper()
+                quantidade_produtos = int(input("QUANTIDADE DE PRODUTOS: "))
 
-compra_produtos = []
-uantidade_produtos = []
-data_retiradas = []
-hora_retiradas = []
+                # ===== DATA =====
+                data_retirada = input("DATA RETIRADA(dd/mm/aaaa): ")
 
-while True:
- compra_produtos = input("QUAL PRODUTO VOCE QUER COMPRAR?: ").upper()
- quantidade_produtos = int(input("QUANTIDADE DE PRODUTOS: "))
+                while len(data_retirada) != 10 or "/" not in data_retirada:
+                    print("DATA INVALIDA")
+                    data_retirada = input("DIGITE DATA (dd/mm/aaaa): ")
 
- data_retirada = input("DATA RETIRADA(aa/aa/aa): ")
- while len(data_retirada) != 10 or "/" not in data_retirada :
-     print("DATA INVALIDA")
-     data_retirada = input(" DIGITE DATA (aa/aa/aa): ")
+                dataFormatada = data_retirada.split("/")
+                dia = dataFormatada[0]
+                mes = dataFormatada[1]
+                ano = dataFormatada[2]
 
- dataFormatada = data_retirada.split("/")
- dia = dataFormatada[0]
- mes = dataFormatada[1]
- ano = int(dataFormatada[2])
+                while not (dia.isdigit() and mes.isdigit() and ano.isdigit()):
+                    print("DATA INVALIDA (SO NUMEROS)")
+                    data_retirada = input("DATA RETIRADA(dd/mm/aaaa): ")
+                    dataFormatada = data_retirada.split("/")
+                    dia = dataFormatada[0]
+                    mes = dataFormatada[1]
+                    ano = dataFormatada[2]
 
- while ano < 2026:
-      print("ANO INVALIDO (PRECISA SER 2026 OU MAIOR)")
-      data_retirada = input("DATA RETIRADA(aa/aa/aa): ")
+                dia = int(dia)
+                mes = int(mes)
+                ano = int(ano)
 
- while mes > 3:
-     print("MES INVALIDO(PRECISA SER 2 DIGITOS)")
-     data_retirada = input("DATA RETIRADA(aa/aa/aa): ")
+                while ano < 2026:
+                    print("ANO INVALIDO")
+                    data_retirada = input("DATA RETIRADA(dd/mm/aaaa): ")
+                    dataFormatada = data_retirada.split("/")
+                    dia = int(dataFormatada[0])
+                    mes = int(dataFormatada[1])
+                    ano = int(dataFormatada[2])
 
- while dia > 3:
-     print("DIA INVALIDO(PRECISA SER 2 DIGITOS)")
-     data_retirada = input("DATA RETIRADA(aa/aa/aa): ")
+                while mes < 1 or mes > 12:
+                    print("MES INVALIDO")
+                    data_retirada = input("DATA RETIRADA(dd/mm/aaaa): ")
+                    dataFormatada = data_retirada.split("/")
+                    dia = int(dataFormatada[0])
+                    mes = int(dataFormatada[1])
+                    ano = int(dataFormatada[2])
 
+                while dia < 1 or dia > 31:
+                    print("DIA INVALIDO")
+                    data_retirada = input("DATA RETIRADA(dd/mm/aaaa): ")
+                    dataFormatada = data_retirada.split("/")
+                    dia = int(dataFormatada[0])
+                    mes = int(dataFormatada[1])
+                    ano = int(dataFormatada[2])
 
- hora_retirada = input("HORA RETIRADA: ")
+                data_retiradas.append(data_retirada)
 
- while len(hora_retirada) == 10 or ":" not in hora_retirada:
-     print("HORA INVALIDA")
-     hora_retirada = input("HORA RETIRADA: ")
+                # ===== HORA =====
+                hora_retirada = input("HORA RETIRADA (hh:mm:ss): ")
 
- horaFormatada = hora_retirada.split(":")
- hora = horaFormatada[0]
- minutos = horaFormatada[1]
- segundos = horaFormatada[2]
+                while len(hora_retirada) < 7 or ":" not in hora_retirada:
+                    print("HORA INVALIDA")
+                    hora_retirada = input("HORA RETIRADA: ")
 
+                horaFormatada = hora_retirada.split(":")
+                hora = horaFormatada[0]
+                minutos = horaFormatada[1]
+                segundos = horaFormatada[2]
 
- print(f"agendamento feito com sucesso voce vai pegar {quantidade_produtos} | {compra_produtos}  no dia {dia} | do mes {mes} | as {hora_retirada}.")
- break
+                while not (hora.isdigit() and minutos.isdigit() and segundos.isdigit()):
+                    print("HORA INVALIDA (SO NUMEROS)")
+                    hora_retirada = input("HORA RETIRADA: ")
+                    horaFormatada = hora_retirada.split(":")
+                    hora = horaFormatada[0]
+                    minutos = horaFormatada[1]
+                    segundos = horaFormatada[2]
 
+                hora = int(hora)
+                minutos = int(minutos)
+                segundos = int(segundos)
 
+                while hora < 0 or hora > 23:
+                    print("HORA INVALIDA")
+                    hora_retirada = input("HORA RETIRADA: ")
+                    horaFormatada = hora_retirada.split(":")
+                    hora = int(horaFormatada[0])
+                    minutos = int(horaFormatada[1])
+                    segundos = int(horaFormatada[2])
+
+                while minutos < 0 or minutos > 59:
+                    print("MINUTO INVALIDO")
+                    hora_retirada = input("HORA RETIRADA: ")
+                    horaFormatada = hora_retirada.split(":")
+                    hora = int(horaFormatada[0])
+                    minutos = int(horaFormatada[1])
+                    segundos = int(horaFormatada[2])
+
+                while segundos < 0 or segundos > 59:
+                    print("SEGUNDO INVALIDO")
+                    hora_retirada = input("HORA RETIRADA: ")
+                    horaFormatada = hora_retirada.split(":")
+                    hora = int(horaFormatada[0])
+                    minutos = int(horaFormatada[1])
+                    segundos = int(horaFormatada[2])
+
+                hora_retiradas.append(hora_retirada)
+
+                print(f"Agendamento feito! Produto: {compra_produtos} | Quantidade: {quantidade_produtos}")
+                print(f"Data: {data_retirada} | Hora: {hora_retirada}")
+
+                sair = input("Deseja fazer outra compra? (s/n): ")
+                if sair != "s":
+                    break
+
+        else:
+            print("Login inválido!")
+
+    elif opcao == "0":
+        print("Saindo...")
+        break
+
+    else:
+        print("Opção inválida!")
