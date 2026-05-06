@@ -1,52 +1,52 @@
-# usuarios = [
-#     ["jonatas", "123", "ADM"],
-#     ["maria", "abc", "CLIENTE"]
-# ]
-#
-# animais = []
-#
-# while True:
-#     print("\n-------- MENU --------")
-#     print("1 - Cadastrar usuário")
-#     print("2 - Listar usuários")
-#     print("3 - Login")
-#     print("0 - Sair")
-#
-#     opcao = input("Escolha: ")
-#
-#     # CADASTRAR USUÁRIO
-#     if opcao == "1":
-#         login = input("Login: ")
-#         senha = input("Senha: ")
-#         perfil = input("Perfil (ADM/CLIENTE): ")
-#
-#         usuarios.append([login, senha, perfil])
-#         print("Usuário cadastrado!")
-#
-#     # LISTAR USUÁRIOS
-#     elif opcao == "2":
-#         for u in usuarios:
-#             print(u[0], "-", u[2])
-#
-#     # LOGIN
-#     elif opcao == "3":
-#         print("\n--- LOGIN ---")
-#         login = input("Login: ")
-#         senha = input("Senha: ")
-#
-#         usuario = []
-#
-#         for u in usuarios:
-#             if u[0] == login and u[1] == senha:
-#                 usuario = u
-#
-#         if usuario != []:
-#             print("Login realizado!")
-#
-#             perfil = usuario[2]
+usuarios = [
+    ["jonatas", "123", "ADM"],
+    ["maria", "abc", "CLIENTE"]
+]
+
+animais = []
+
+while True:
+    print("\n-------- MENU --------")
+    print("1 - Cadastrar usuário")
+    print("2 - Listar usuários")
+    print("3 - Login")
+    print("0 - Sair")
+
+    opcao = input("Escolha: ")
+
+    # CADASTRAR USUÁRIO
+    if opcao == "1":
+        login = input("Login: ")
+        senha = input("Senha: ")
+        perfil = input("Perfil (ADM/CLIENTE): ")
+
+        usuarios.append([login, senha, perfil])
+        print("Usuário cadastrado!")
+
+    # LISTAR USUÁRIOS
+    elif opcao == "2":
+        for u in usuarios:
+            print(u[0], "-", u[2])
+
+    # LOGIN
+    elif opcao == "3":
+        print("\n--- LOGIN ---")
+        login = input("Login: ")
+        senha = input("Senha: ")
+
+        usuario = []
+
+        for u in usuarios:
+            if u[0] == login and u[1] == senha:
+                usuario = u
+
+        if usuario != []:
+            print("Login realizado!")
+
+            perfil = usuario[2]
 
 
-   # R6
+   R6
 
 compra_produtos = []
 uantidade_produtos = []
