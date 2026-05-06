@@ -1,150 +1,98 @@
-# Lista inicial de usuários com login, senha e perfil
-usuarios = [
-    ["jonatas", "123", "ADM"],
-    ["maria", "abc", "CLIENTE"]
-]
+# usuarios = [
+#     ["jonatas", "123", "ADM"],
+#     ["maria", "abc", "CLIENTE"]
+# ]
+#
+# animais = []
+#
+# while True:
+#     print("\n-------- MENU --------")
+#     print("1 - Cadastrar usuário")
+#     print("2 - Listar usuários")
+#     print("3 - Login")
+#     print("0 - Sair")
+#
+#     opcao = input("Escolha: ")
+#
+#     # CADASTRAR USUÁRIO
+#     if opcao == "1":
+#         login = input("Login: ")
+#         senha = input("Senha: ")
+#         perfil = input("Perfil (ADM/CLIENTE): ")
+#
+#         usuarios.append([login, senha, perfil])
+#         print("Usuário cadastrado!")
+#
+#     # LISTAR USUÁRIOS
+#     elif opcao == "2":
+#         for u in usuarios:
+#             print(u[0], "-", u[2])
+#
+#     # LOGIN
+#     elif opcao == "3":
+#         print("\n--- LOGIN ---")
+#         login = input("Login: ")
+#         senha = input("Senha: ")
+#
+#         usuario = []
+#
+#         for u in usuarios:
+#             if u[0] == login and u[1] == senha:
+#                 usuario = u
+#
+#         if usuario != []:
+#             print("Login realizado!")
+#
+#             perfil = usuario[2]
 
-# Lista de animais cadastrados
-animais = []
 
-# Loop principal do sistema
+   # R6
+
+compra_produtos = []
+uantidade_produtos = []
+data_retiradas = []
+hora_retiradas = []
+
 while True:
-    print("\n-------- MENU --------")
-    print("1 - Cadastrar usuário")
-    print("2 - Listar usuários")
-    print("3 - Login")
-    print("0 - Sair")
+ compra_produtos = input("QUAL PRODUTO VOCE QUER COMPRAR?: ").upper()
+ quantidade_produtos = int(input("QUANTIDADE DE PRODUTOS: "))
 
-    opcao = input("Escolha (1, 2, 3, 0): ").strip()
+ data_retirada = input("DATA RETIRADA(aa/aa/aa): ")
+ while len(data_retirada) != 10 or "/" not in data_retirada :
+     print("DATA INVALIDA")
+     data_retirada = input(" DIGITE DATA (aa/aa/aa): ")
 
-    # CADASTRAR NOVO USUÁRIO
-    if opcao == "1":
-        print("\n--- CADASTRO ---")
-        login = input("Digite o login: ").strip()
-        senha = input("Digite a senha: ").strip()
-        perfil = input("Digite o perfil (ADM ou CLIENTE): ").strip().upper()
+ dataFormatada = data_retirada.split("/")
+ dia = dataFormatada[0]
+ mes = dataFormatada[1]
+ ano = int(dataFormatada[2])
 
-        usuarios.append([login, senha, perfil])
-        print("Usuário cadastrado com sucesso!")
+ while ano < 2026:
+      print("ANO INVALIDO (PRECISA SER 2026 OU MAIOR)")
+      data_retirada = input("DATA RETIRADA(aa/aa/aa): ")
 
-    # LISTAR USUÁRIOS
-    elif opcao == "2":
-        print("\n--- USUÁRIOS ---")
-        for u in usuarios:
-            print(f"Login: {u[0]} | Perfil: {u[2]}")
+ while mes > 3:
+     print("MES INVALIDO(PRECISA SER 2 DIGITOS)")
+     data_retirada = input("DATA RETIRADA(aa/aa/aa): ")
 
-    # # LOGIN
-    # elif opcao == "3":
-    #     print("\n--- LOGIN ---")
-    #     login = input("Login: ").strip()
-#     senha = input("Senha: ").strip()
-    #
-    #     encontrado = None
-    #     for u in usuarios:
-    #         if u[0] == login and u[1] == senha:
-    #             encontrado = u
-    #             break
+ while dia > 3:
+     print("DIA INVALIDO(PRECISA SER 2 DIGITOS)")
+     data_retirada = input("DATA RETIRADA(aa/aa/aa): ")
 
-        if encontrado:
-            print("Login realizado com sucesso!")
-            perfil = encontrado[2]
 
-            # ================= ADM =================
-            if perfil == "ADM":
-                print("BEM VINDO ADM")
+ hora_retirada = input("HORA RETIRADA: ")
 
-                while True:
-                    print("\n--- MENU ADM ---")
-                    print("3 - Cadastrar animal")
-                    print("4 - Listar animais")
-                    print("5 - Remover animal")
-                    print("6 - Atualizar status")
-                    print("0 - Sair")
+ while len(hora_retirada) == 10 or ":" not in hora_retirada:
+     print("HORA INVALIDA")
+     hora_retirada = input("HORA RETIRADA: ")
 
-                    escolha = input("Escolha: ").strip()
+ horaFormatada = hora_retirada.split(":")
+ hora = horaFormatada[0]
+ minutos = horaFormatada[1]
+ segundos = horaFormatada[2]
 
-                    # CADASTRAR ANIMAL
-                    if escolha == "3":
-                        print("\n--- CADASTRAR ANIMAL ---")
-                        tipo = input("Tipo (Bovino, Caprino, Ovino, Suíno): ").strip()
-                        identificacao = input("Identificação (brinco/número): ").strip()
-                        status = input("Status (lactação, engorda, venda): ").strip()
 
-                        animais.append([tipo, identificacao, status])
-                        print("Animal cadastrado com sucesso!")
+ print(f"agendamento feito com sucesso voce vai pegar {quantidade_produtos} | {compra_produtos}  no dia {dia} | do mes {mes} | as {hora_retirada}.")
+ break
 
-                    # LISTAR ANIMAIS
-                    elif escolha == "4":
-                        if not animais:
-                            print("0 animais no momento!")
-                        else:
-                            print("\n--- LISTA DE ANIMAIS ---")
-                            for a in animais:
-                                print(f"Tipo: {a[0]} | ID: {a[1]} | Status: {a[2]}")
 
-                    # REMOVER ANIMAL
-                    elif escolha == "5":
-                        print("\n--- REMOVER ANIMAL ---")
-                        id_remover = input("Digite o ID do animal: ").strip()
-
-                        animais = [a for a in animais if a[1] != id_remover]
-
-                        print("Remoção concluída!")
-
-                    # ATUALIZAR STATUS
-                    elif escolha == "6":
-                        print("\n--- ATUALIZAR STATUS ---")
-                        id_busca = input("Digite o ID do animal: ").strip()
-
-                        for a in animais:
-                            if a[1] == id_busca:
-                                novo_status = input("Novo status: ").strip()
-                                a[2] = novo_status
-                                print("Status atualizado!")
-                                break
-                        else:
-                            print("Animal não encontrado!")
-
-                    elif escolha == "0":
-                        print("Saindo do menu ADM...")
-                        break
-
-                    else:
-                        print("Opção inválida!")
-
-            #================= CLIENTE =================
-            elif perfil == "CLIENTE":
-                print("BEM VINDO CLIENTE")
-
-                while True:
-                    print("\n--- MENU CLIENTE ---")
-                    print("4 - Listar animais")
-                    print("0 - Sair")
-
-                    escolha = input("Escolha: ").strip()
-
-                    if escolha == "4":
-                        if not animais:
-                            print("0 animais no momento!")
-                        else:
-                            print("\n--- LISTA DE ANIMAIS ---")
-                            for a in animais:
-                                print(f"Tipo: {a[0]} | ID: {a[1]} | Status: {a[2]}")
-
-                    elif escolha == "0":
-                        print("Saindo do menu CLIENTE...")
-                        break
-
-                    else:
-                        print("Opção inválida!")
-
-        else:
-            print("Login inválido!")
-
-    # SAIR
-    elif opcao == "0":
-        print("Saindo do sistema...")
-        break
-
-    else:
-        print("Opção inválida!")
