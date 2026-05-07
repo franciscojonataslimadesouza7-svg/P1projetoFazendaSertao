@@ -10,11 +10,9 @@ while True:
     print("2 - Login")
     print("0 - Sair")
 
-    opcao = input("Escolha: ")
+    opcao = input("Escolha (1 - Cadastrar, 2 - Login, 0 - Sair :  ")
 
-    # =========================
     # CADASTRO
-    # =========================
     if opcao == "1":
 
         login = input("Novo login: ")
@@ -33,9 +31,8 @@ while True:
 
         print("Usuario cadastrado!")
 
-    # =========================
     # LOGIN
-    # =========================
+
     elif opcao == "2":
 
         login = input("Login: ")
@@ -52,9 +49,8 @@ while True:
                 print("\nLogin realizado!")
                 print("Perfil:", u[2])
 
-                # =========================
                 # AREA DE COMPRA
-                # =========================
+
                 while True:
 
                     produto = input(
@@ -104,9 +100,9 @@ while True:
         if encontrou == False:
             print("Login invalido!")
 
-    # =========================
+
     # SAIR
-    # =========================
+
     elif opcao == "0":
 
         print("Saindo...")
