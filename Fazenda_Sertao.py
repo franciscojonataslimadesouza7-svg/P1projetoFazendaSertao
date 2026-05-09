@@ -1,176 +1,93 @@
 usuarios = [
-    ["jonatas", "1234", "ADM"],
-    ["jose", "12", "CLIENTE"]
+    ["12", "12", "ADM"],
+    ["jose", "12", "CLI"]
+]
+
+rebanho = [
+    ["Bovino de Leite", "001", "Em lactação"],
+    ["Caprino", "002", "Disponível para venda"]
 ]
 
 while True:
     print("\n--- MENU ---")
-    print("1 - Cadastrar")
-    print("2 - Login")
+    print("1 - Login")
     print("0 - Sair")
 
-    opcao = input("Escolha: ")
-
-    # CADASTRO
-    if opcao == "1":
-        login = input("Login: ")
-
-        while True:
-            senha = input("Senha: ")
-
-            contador = 0
-            for letra in senha:
-                if letra >= "0" and letra <= "9":
-                    contador = contador + 1
-
-            if len(senha) >= 8 and contador >= 2:
-                break
-            else:
-                print("Senha inválida!")
-
-        perfil = input("Perfil (ADM ou CLIENTE): ").upper()
-
-        usuarios.append([login, senha, perfil])
-        print("Usuário cadastrado!")
+    opcao = input("Escolha (1 - Login, 0 - Sair): ")
 
     # LOGIN
-    elif opcao == "2":
-        login = input("Login: ")
-        senha = input("Senha: ")
+    if opcao == "1":
 
-        usuario = []
+        while True:
+            login = input("Login: ")
+            senha = input("Senha: ")
+            logado =  " "
 
-        for u in usuarios:
-            if u[0] == login and u[1] == senha:
-                usuario = u
+            for user in usuarios:
+                if login == user[0] and senha == user[1]:
+                    logado = user
 
-        if usuario != []:
-            print("Login realizado!")
+            if logado:
+                while True:
+                    if logado[2] == "ADM":
+                        print("\n--- MENU ADM ---")
+                        print("1 - Cadastrar animais")
+                        print("2 - Buscar animais")
+                        print("3 - Atualizar animais")
+                        print("4 - Remover animais")
+                        print("5 - Registrar produção de leite")
+                        print("6 - Adicionar produtos ao estoque")
+                        print("7 - Definir preço de venda")
+                        print("0 - Sair")
+                        op = input("Escolha a opção: ")
 
-            perfil = usuario[2]
+                        if op == "1":
+                            tipo_animal = input("Informe o tipo do animal: ")
+                            identificador = input("Informe o identificador do animal: ")
+                            status = input("Informe o status do animal: ")
 
-            compra_produtos = []
-            quantidade_produtos = []
-            data_retiradas = []
-            hora_retiradas = []
+                            rebanho.append([tipo_animal, identificador, status])
 
-            while True:
-                compra_produtos = input("QUAL PRODUTO VOCE QUER COMPRAR?: ").upper()
-                quantidade_produtos = int(input("QUANTIDADE DE PRODUTOS: "))
+                            print(f"Animal {tipo_animal} cadastrado com sucesso!")
 
-                # ===== DATA =====
-                data_retirada = input("DATA RETIRADA(dd/mm/aaaa): ")
+                        elif op == "2":
+                            identificador = input("Informe o identificador do animal: ")
 
-                while len(data_retirada) != 10 or "/" not in data_retirada:
-                    print("DATA INVALIDA")
-                    data_retirada = input("DIGITE DATA (dd/mm/aaaa): ")
+                            for animal in rebanho:
 
-                dataFormatada = data_retirada.split("/")
-                dia = dataFormatada[0]
-                mes = dataFormatada[1]
-                ano = dataFormatada[2]
+                                if identificador == animal[1]:
+                                    print("Animal encontrado!")
+                                    print("tipo:", animal[0])
+                                    print("identificado:", animal[1])
+                                    print("status:", animal[2])
 
-                while not (dia.isdigit() and mes.isdigit() and ano.isdigit()):
-                    print("DATA INVALIDA (SO NUMEROS)")
-                    data_retirada = input("DATA RETIRADA(dd/mm/aaaa): ")
-                    dataFormatada = data_retirada.split("/")
-                    dia = dataFormatada[0]
-                    mes = dataFormatada[1]
-                    ano = dataFormatada[2]
 
-                dia = int(dia)
-                mes = int(mes)
-                ano = int(ano)
+                        elif op == "3":
+                            tipo_animal = input("Informe o tipo do animal: ")
+                            identificador = input("Informe o identificador do animal: ")
+                            status = input("Informe o status do animal: ")
 
-                while ano < 2026:
-                    print("ANO INVALIDO")
-                    data_retirada = input("DATA RETIRADA(dd/mm/aaaa): ")
-                    dataFormatada = data_retirada.split("/")
-                    dia = int(dataFormatada[0])
-                    mes = int(dataFormatada[1])
-                    ano = int(dataFormatada[2])
+                            rebanho.append([tipo_animal, identificador, status])
+                            print("animal atualizado com sucesso!!")
 
-                while mes < 1 or mes > 12:
-                    print("MES INVALIDO")
-                    data_retirada = input("DATA RETIRADA(dd/mm/aaaa): ")
-                    dataFormatada = data_retirada.split("/")
-                    dia = int(dataFormatada[0])
-                    mes = int(dataFormatada[1])
-                    ano = int(dataFormatada[2])
 
-                while dia < 1 or dia > 31:
-                    print("DIA INVALIDO")
-                    data_retirada = input("DATA RETIRADA(dd/mm/aaaa): ")
-                    dataFormatada = data_retirada.split("/")
-                    dia = int(dataFormatada[0])
-                    mes = int(dataFormatada[1])
-                    ano = int(dataFormatada[2])
 
-                data_retiradas.append(data_retirada)
+                        elif op == "3":
+                          identificador = input("Informe o identificador do animal: ")
 
-                # ===== HORA =====
-                hora_retirada = input("HORA RETIRADA (hh:mm:ss): ")
+                          for animal in rebanho:
+                              if identificador == aniaml[1]
+                                  rebanho.remove(animal)
 
-                while len(hora_retirada) < 7 or ":" not in hora_retirada:
-                    print("HORA INVALIDA")
-                    hora_retirada = input("HORA RETIRADA: ")
+                                    print("animal removido com sucesso")
 
-                horaFormatada = hora_retirada.split(":")
-                hora = horaFormatada[0]
-                minutos = horaFormatada[1]
-                segundos = horaFormatada[2]
 
-                while not (hora.isdigit() and minutos.isdigit() and segundos.isdigit()):
-                    print("HORA INVALIDA (SO NUMEROS)")
-                    hora_retirada = input("HORA RETIRADA: ")
-                    horaFormatada = hora_retirada.split(":")
-                    hora = horaFormatada[0]
-                    minutos = horaFormatada[1]
-                    segundos = horaFormatada[2]
 
-                hora = int(hora)
-                minutos = int(minutos)
-                segundos = int(segundos)
 
-                while hora < 0 or hora > 23:
-                    print("HORA INVALIDA")
-                    hora_retirada = input("HORA RETIRADA: ")
-                    horaFormatada = hora_retirada.split(":")
-                    hora = int(horaFormatada[0])
-                    minutos = int(horaFormatada[1])
-                    segundos = int(horaFormatada[2])
-
-                while minutos < 0 or minutos > 59:
-                    print("MINUTO INVALIDO")
-                    hora_retirada = input("HORA RETIRADA: ")
-                    horaFormatada = hora_retirada.split(":")
-                    hora = int(horaFormatada[0])
-                    minutos = int(horaFormatada[1])
-                    segundos = int(horaFormatada[2])
-
-                while segundos < 0 or segundos > 59:
-                    print("SEGUNDO INVALIDO")
-                    hora_retirada = input("HORA RETIRADA: ")
-                    horaFormatada = hora_retirada.split(":")
-                    hora = int(horaFormatada[0])
-                    minutos = int(horaFormatada[1])
-                    segundos = int(horaFormatada[2])
-
-                hora_retiradas.append(hora_retirada)
-
-                print(f"Agendamento feito! Produto: {compra_produtos} | Quantidade: {quantidade_produtos}")
-                print(f"Data: {data_retirada} | Hora: {hora_retirada}")
-
-                sair = input("Deseja fazer outra compra? (s/n): ")
-                if sair != "s":
-                    break
-
-        else:
-            print("Login inválido!")
+                    elif logado[2] == "CLI":
+                        input("\n-----MENU-----")
+                        print()
 
     elif opcao == "0":
-        print("Saindo...")
+        print("obrigado por acessar nosso sistema......")
         break
-
-    else:
-        print("Opção inválida!")
